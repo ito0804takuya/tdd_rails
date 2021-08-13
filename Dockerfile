@@ -56,3 +56,6 @@ ENTRYPOINT [ "entrypoint.sh" ]
 
 # 出力ポート
 EXPOSE 3000
+
+# Railsサーバ起動
+CMD ["rails", "server", "-b", "0.0.0.0"]
