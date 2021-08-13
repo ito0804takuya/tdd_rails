@@ -58,4 +58,5 @@ ENTRYPOINT [ "entrypoint.sh" ]
 EXPOSE 3000
 
 # Railsサーバ起動
+# composeで指定しているから不要？
 CMD ["rails", "server", "-b", "0.0.0.0"]
