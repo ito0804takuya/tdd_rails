@@ -5,20 +5,8 @@ FROM ruby:2.6.5
 ENV APP_ROOT /app
 
 # 必要なライブラリを取得
-
-# RUN apt-get update -qq \
-#   # curlをインストール
-#   # -y : すべてyesと答える
-#   && apt-get install -y curl \
-#   # 公開鍵を取得
-#   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-#   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-#   # 必要？
-#   && apt-get update \
-#   # yarnをインストール
-#   && apt-get install -y yarn
-
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+# wget...の行は、M1 Macで起こるエラー回避のため変更
+RUN wget --quiet -O - /tmp/pubkey.gpg https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
   # 公開鍵を取得し、
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
   # apt-get → Ubuntuを使う
@@ -26,6 +14,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
   # -qq : エラー以外は表示しない
   apt-get update -qq && \
   # インストール
+  # -y : すべてyesと答える
   apt-get install -y --no-install-recommends \
   build-essential \
   nodejs \
