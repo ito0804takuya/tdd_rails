@@ -1,11 +1,11 @@
 class Dollar < ApplicationRecord
   # ゲッター、セッター
-  attr_accessor :amount
+  # attr_accessor :amount
 
   # インスタンス初期化時に実行
-  def initialize(amount:)
-    @amount = amount
-  end
+  # def initialize(amount:)
+  #   @amount = amount
+  # end
 
   def times(multiplier)
     # @amount *= multiplier
