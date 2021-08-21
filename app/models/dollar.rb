@@ -1,4 +1,5 @@
-class Dollar < ApplicationRecord
+# class Dollar < ApplicationRecord
+class Dollar < Money
   # ゲッター、セッター
   # attr_accessor :amount
 
@@ -14,7 +15,7 @@ class Dollar < ApplicationRecord
   end
 
   # Value Objectパターンのため
-  def equals(object)
-    return amount === object.amount
-  end
+  # def equals(object)
+  #   return amount === object.amount
+  # end
 end
