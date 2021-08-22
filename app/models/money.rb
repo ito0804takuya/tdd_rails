@@ -9,8 +9,13 @@ class Money < ApplicationRecord
     return Franc.new(amount: amount)
   end
 
+  # インスタンスメソッド
   def equals(object)
     return amount === object.amount && object.class == self.class
+  end
+
+  def currency()
+    return self.class::CURRENCY
   end
 
 end
