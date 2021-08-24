@@ -11,4 +11,8 @@ RSpec.describe Money, type: :model do
     expect(Money.new_franc(amount: 1).currency()).to eq "CHF"
   end
 
+  it "Money(10, USD)とDollar(10, USD)は等しい" do
+    expect(Money.new_dollar(amount: 10).equals(Dollar.new(amount: 10, currency: "USD"))).to be_truthy
+  end
+
 end

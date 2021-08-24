@@ -11,7 +11,12 @@ class Money < ApplicationRecord
 
   # インスタンスメソッド
   def equals(object)
-    return amount === object.amount && object.class == self.class
+    return amount === object.amount && currency === object.currency
+  end
+
+  def times(multiplier)
+    # 毎回新しいインスタンスを返す
+    return Money.new(amount: amount * multiplier, currency: currency)
   end
 
 end
