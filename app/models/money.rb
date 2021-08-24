@@ -2,11 +2,11 @@ class Money < ApplicationRecord
 
   # クラスメソッド
   def self.new_dollar(amount:)
-    return Dollar.new(amount: amount, currency: "USD")
+    return Money.new(amount: amount, currency: "USD")
   end
 
   def self.new_franc(amount:)
-    return Franc.new(amount: amount, currency: "CHF")
+    return Money.new(amount: amount, currency: "CHF")
   end
 
   # インスタンスメソッド
