@@ -1,4 +1,5 @@
 class Money < ApplicationRecord
+  include ExpressionInterface
 
   # クラスメソッド
   def self.new_dollar(amount:)
@@ -17,6 +18,10 @@ class Money < ApplicationRecord
   def times(multiplier)
     # 毎回新しいインスタンスを返す
     return Money.new(amount: amount * multiplier, currency: currency)
+  end
+
+  def plus(addObject)
+    return Money.new(amount: amount + addObject.amount, currency: currency)
   end
 
 end
