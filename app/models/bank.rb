@@ -1,7 +1,8 @@
 class Bank < ApplicationRecord
 
-  def reduce(money:, currency:)
-    return money
+  # 換金
+  def reduce(sum:, currency:)
+    return sum.reduce(to: currency) # Sum.reduce()を呼ぶ
   end
-  
+
 end

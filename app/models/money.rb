@@ -21,7 +21,8 @@ class Money < ApplicationRecord
   end
 
   def plus(addObject)
-    return Money.new(amount: amount + addObject.amount, currency: currency)
+    # return Money.new(amount: amount + addObject.amount, currency: currency)
+    return Sum.new(augend: self, addend: addObject)
   end
 
 end
