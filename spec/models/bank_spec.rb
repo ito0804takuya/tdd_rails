@@ -10,7 +10,7 @@ RSpec.describe Bank, type: :model do
     # 換算する銀行オブジェクト
     bank = Bank.new
     # 為替レートを適用して換算した金額
-    reduced = bank.reduce(sum: sum, currency: "USD") # Sum
+    reduced = bank.reduce(source: sum, currency: "USD") # Sum
     # $5 + $5 = $10
     expect(Money.new_dollar(amount: 10).equals(reduced)).to be_truthy
     # expect(reduced).to have_attributes(Money.new_dollar(amount: 10).attributes)

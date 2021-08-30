@@ -6,4 +6,9 @@ module ExpressionInterface
   def plus(addObject)
     raise NotImplementedError.new("#{self.class}##{__method__}が実装されていません")
   end
+
+  # 換金
+  def reduce(to:)
+    raise NotImplementedError.new("#{self.class}##{__method__}が実装されていません")
+  end
 end

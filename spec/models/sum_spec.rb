@@ -17,14 +17,21 @@ RSpec.describe Sum, type: :model do
   end
 
   describe '#reduce' do
-    it "$3+$4を換金した結果、$7と等しくなるか" do
+    it "SUM($3+$4)を換金した結果、$7と等しくなるか" do
       # $3 + $4
       sum = Sum.new(augend: Money.new_dollar(amount: 3), addend: Money.new_dollar(amount: 4))
       bank = Bank.new
       # BankがSum($7)をUSDで換金
-      result = bank.reduce(sum: sum, currency: "USD")
+      result = bank.reduce(source: sum, currency: "USD")
       # 換金結果 = $7
       expect(result).to have_attributes(Money.new_dollar(amount: 7).attributes)
+    end
+
+    it "Money($1)を換金し、$1と等しくなるか" do
+      bank = Bank.new
+      # BankがMoney($1)をUSDで換金
+      result = bank.reduce(source: Money.new_dollar(amount: 1), currency: "USD")
+      expect(result).to have_attributes(Money.new_dollar(amount: 1).attributes)
     end
   end
 end

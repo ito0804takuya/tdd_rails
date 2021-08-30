@@ -25,4 +25,10 @@ class Money < ApplicationRecord
     return Sum.new(augend: self, addend: addObject)
   end
 
+  # 換金
+  def reduce(to:)
+    # 換金対象がMoneyインスタンスの場合、そのまま返す
+    return self
+  end
+
 end
