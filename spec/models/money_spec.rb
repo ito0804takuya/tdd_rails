@@ -31,4 +31,18 @@ RSpec.describe Money, type: :model do
       expect(Money.new_dollar(amount: 5).equals(Money.new_dollar(amount: 6))).to be_falsey
     end
   end
+
+  describe "#reduce" do
+    it "2CHF = 1$" do
+      bank = Bank.new
+      # レートを設定
+      bank.addRate(from: "CHF", to: "USD", rate: 2)
+      # 換金( 2CHF → ?USD )
+      result = bank.reduce(source: Money.new_franc(amount: 2), currency: "USD")
+      # 2CHF = 1$
+      expect(result).to have_attributes(Money.new_dollar(amount: 1).attributes)
+      expect(result.equals(Money.new_dollar(amount: 1))).to be_truthy
+    end
+  end
+  
 end

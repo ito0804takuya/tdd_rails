@@ -26,9 +26,15 @@ class Money < ApplicationRecord
   end
 
   # 換金
-  def reduce(to:)
+  # def reduce(to:)
+  def reduce(bank: ,to:)
     # 換金対象がMoneyインスタンスの場合、そのまま返す
-    return self
+    # return self
+
+    # rate = Bank.rate(currency: currency, to: to)
+    rate = bank.rate(currency: currency, to: to)
+    # 例 : 2CHF → 1USD
+    return Money.new(amount: amount / rate, currency: to)
   end
 
 end
