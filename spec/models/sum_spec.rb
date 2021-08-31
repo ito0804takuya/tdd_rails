@@ -27,6 +27,10 @@ RSpec.describe Sum, type: :model do
       expect(result).to have_attributes(Money.new_dollar(amount: 7).attributes)
     end
 
+    it "同じ通貨同士のレートは1になるか" do
+      expect(Bank.new.rate(from: "USD", to: "USD")).to eq 1
+    end
+
     it "Money($1)を換金し、$1と等しくなるか" do
       bank = Bank.new
       # BankがMoney($1)をUSDで換金

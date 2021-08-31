@@ -1,20 +1,25 @@
 class Bank < ApplicationRecord
 
+  # レートを保持
+  def rates
+    @rates ||= {}
+  end
+
   # 換金
   def reduce(source:, currency:)
     # sourceは MoneyかSumだが、それぞれにreduce()が定義されている
-    # return source.reduce(to: currency)
     return source.reduce(bank: self, to: currency)
   end
 
+  # 保持したいレートを追加
   def addRate(from:, to:, rate:)
+    rates.store(Pair.new(from: from, to: to).hash_key, rate.to_i)
   end
 
-  # def self.rate(currency: ,to:)
-  def rate(currency: ,to:)
-    # 換金対象がCHF かつ 変換先がUSD の場合、レート = 2
-    # それ以外はレート = 1
-    rate = currency === "CHF" && to === "USD" ? 2 :1;
+  def rate(from: ,to:)
+    return 1 if from === to # 同じ通貨同士のレートは1
+
+    rates.dig(Pair.new(from: from, to: to).hash_key)
   end
 
 end

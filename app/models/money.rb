@@ -16,23 +16,16 @@ class Money < ApplicationRecord
   end
 
   def times(multiplier)
-    # 毎回新しいインスタンスを返す
     return Money.new(amount: amount * multiplier, currency: currency)
   end
 
   def plus(addObject)
-    # return Money.new(amount: amount + addObject.amount, currency: currency)
     return Sum.new(augend: self, addend: addObject)
   end
 
   # 換金
-  # def reduce(to:)
   def reduce(bank: ,to:)
-    # 換金対象がMoneyインスタンスの場合、そのまま返す
-    # return self
-
-    # rate = Bank.rate(currency: currency, to: to)
-    rate = bank.rate(currency: currency, to: to)
+    rate = bank.rate(from: currency, to: to)
     # 例 : 2CHF → 1USD
     return Money.new(amount: amount / rate, currency: to)
   end
