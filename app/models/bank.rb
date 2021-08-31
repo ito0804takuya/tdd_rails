@@ -7,8 +7,8 @@ class Bank < ApplicationRecord
 
   # 換金
   def reduce(source:, currency:)
-    # sourceは MoneyかSumだが、それぞれにreduce()が定義されている
-    return source.reduce(bank: self, to: currency)
+    # sourceは MoneyかSumで、それぞれにreduce()があるので、各クラスのreduce()を呼ぶ
+    source.reduce(bank: self, to: currency)
   end
 
   # 保持したいレートを追加
