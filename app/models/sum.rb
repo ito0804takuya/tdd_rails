@@ -11,8 +11,8 @@ class Sum
 
   # 換金
   def reduce(bank: ,to:)
-    # 換金対象がSumインスタンスの場合、合計値を返す
-    sum = augend.amount + addend.amount
+    # 被加算数と加数を to通貨単位に変換し、合計する
+    sum = augend.reduce(bank: bank, to: to).amount + addend.reduce(bank: bank, to: to).amount
     return Money.new(amount: sum, currency: to)
   end
 end

@@ -44,5 +44,20 @@ RSpec.describe Money, type: :model do
       expect(result.equals(Money.new_dollar(amount: 1))).to be_truthy
     end
   end
+
+  it "$5 + 10CHF = $10 (レートが USD:CHF = 2:1 の場合)" do
+    # テスト条件を整える
+    five_dollars = Money.new_dollar(amount: 5)
+    ten_francs = Money.new_franc(amount: 10)
+    bank = Bank.new
+    bank.addRate(from: "CHF", to: "USD", rate: 2)
+
+    # $5 + 10CHF し、USDに変換
+    result = bank.reduce(source: five_dollars.plus(ten_francs), currency: "USD")
+
+    # $10と等しいこと
+    expect(result).to have_attributes(Money.new_dollar(amount: 10).attributes)
+    expect(result.equals(Money.new_dollar(amount: 10))).to be_truthy
+  end
   
 end
