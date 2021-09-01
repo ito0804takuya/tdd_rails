@@ -38,4 +38,24 @@ RSpec.describe Sum, type: :model do
       expect(result).to have_attributes(Money.new_dollar(amount: 1).attributes)
     end
   end
+
+  describe '#plus' do
+    it "$5 + 10CHF + $5 = $15 (レートが USD:CHF = 2:1 の場合)" do
+      # テスト条件を整える
+      five_dollars = Money.new_dollar(amount: 5)
+      ten_francs = Money.new_franc(amount: 10)
+      bank = Bank.new
+      bank.addRate(from: "CHF", to: "USD", rate: 2)
+
+      # $5 + 10CHF + $5
+      sum = Sum.new(augend: five_dollars, addend: ten_francs).plus(addend: five_dollars)
+      # USDに変換
+      result = bank.reduce(source: sum, currency: "USD")
+
+      # $15と等しいこと
+      expect(result).to have_attributes(Money.new_dollar(amount: 15).attributes)
+      expect(result.equals(Money.new_dollar(amount: 15))).to be_truthy
+    end
+  end
+
 end

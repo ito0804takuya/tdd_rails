@@ -15,4 +15,8 @@ class Sum
     sum = augend.reduce(bank: bank, to: to).amount + addend.reduce(bank: bank, to: to).amount
     return Money.new(amount: sum, currency: to)
   end
+
+  def plus(addend:)
+    Sum.new(augend: self, addend: addend)
+  end
 end
