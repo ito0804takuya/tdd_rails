@@ -19,4 +19,9 @@ class Sum
   def plus(addend:)
     Sum.new(augend: self, addend: addend)
   end
+  
+  def times(multiplier)
+    Sum.new(augend: augend.times(multiplier), addend: addend.times(multiplier))
+  end
+
 end

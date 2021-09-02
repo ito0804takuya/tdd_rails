@@ -59,5 +59,4 @@ RSpec.describe Money, type: :model do
     expect(result).to have_attributes(Money.new_dollar(amount: 10).attributes)
     expect(result.equals(Money.new_dollar(amount: 10))).to be_truthy
   end
-  
 end
