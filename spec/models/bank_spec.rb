@@ -13,7 +13,6 @@ RSpec.describe Bank, type: :model do
     reduced = bank.reduce(source: sum, currency: "USD") # Sum
     # $5 + $5 = $10
     expect(Money.new_dollar(amount: 10).equals(reduced)).to be_truthy
-    # expect(reduced).to have_attributes(Money.new_dollar(amount: 10).attributes)
   end
 
 end

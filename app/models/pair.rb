@@ -16,8 +16,8 @@ class Pair
     return 0
   end
 
+  # Bankのレートを保持するハッシュのキー
   def hash_key
     "#{from}-#{to}"
   end
-  
 end

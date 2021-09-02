@@ -2,10 +2,12 @@ class Money < ApplicationRecord
   include ExpressionInterface
 
   # クラスメソッド
+  # USD(ドル)を生成
   def self.new_dollar(amount:)
     Money.new(amount: amount, currency: "USD")
   end
 
+  # CHF(フラン)を生成
   def self.new_franc(amount:)
     Money.new(amount: amount, currency: "CHF")
   end
@@ -29,5 +31,4 @@ class Money < ApplicationRecord
     # 例 : 2CHF → 1USD
     Money.new(amount: amount / rate, currency: to)
   end
-
 end

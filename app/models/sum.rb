@@ -2,6 +2,7 @@
 class Sum
   include ExpressionInterface
 
+  # ゲッター,セッター
   attr_accessor :augend, :addend
 
   def initialize(augend:, addend:)
@@ -23,5 +24,4 @@ class Sum
   def times(multiplier)
     Sum.new(augend: augend.times(multiplier), addend: addend.times(multiplier))
   end
-
 end
